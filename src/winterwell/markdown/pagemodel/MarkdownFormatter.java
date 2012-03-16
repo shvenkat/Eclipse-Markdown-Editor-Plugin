@@ -167,24 +167,24 @@ public class MarkdownFormatter
       // character sequences ...
       
       if ( c == '['  ) {                           //    [Hyperlink]
-        endWordwrap1 = ']';
+//        endWordwrap1 = ']';
       }
       else if ( c == '*' && nextChar == '*' ) {    //    **Bold**
-        endWordwrap1 = '*';
-        endWordwrap2 = '*';
+//        endWordwrap1 = '*';
+//        endWordwrap2 = '*';
       }                                            //    *Italics*
       else if ( c == '*' && state == StatePosition.MIDDLE_OF_LINE ) {
-        endWordwrap1 = '*';
+//        endWordwrap1 = '*';
       }
       else if ( c == '`' ) {                       //    `code`
         endWordwrap1 = '`';
       }
       else if ( c == '(' && nextChar == '(' ) {    //    ((Footnote))
-        endWordwrap1 = ')';
-        endWordwrap2 = ')';
+//        endWordwrap1 = ')';
+//        endWordwrap2 = ')';
       }
       else if ( c == '!' && nextChar == '[' ) {    //    ![Image]
-        endWordwrap1 = ')';
+//        endWordwrap1 = ')';
       }
       
       // We are no longer doing word-wrapping, so tidy the situation up...
