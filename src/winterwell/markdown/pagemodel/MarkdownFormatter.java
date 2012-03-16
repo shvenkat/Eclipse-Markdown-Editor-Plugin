@@ -184,7 +184,7 @@ public class MarkdownFormatter
         endWordwrap2 = ')';
       }
       else if ( c == '!' && nextChar == '[' ) {    //    ![Image]
-        endWordwrap1 = ')';
+        endWordwrap1 = ']';
       }
       
       // We are no longer doing word-wrapping, so tidy the situation up...
