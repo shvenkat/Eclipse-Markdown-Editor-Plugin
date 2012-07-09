@@ -33,6 +33,7 @@ public class MarkdownPreferencePage
 	extends FieldEditorPreferencePage
 	implements IWorkbenchPreferencePage {
 
+	public static final String PREF_EMPHASIS = "Pref_Emphasis";
 	public static final String PREF_FOLDING = "Pref_Folding";
 	public static final String PREF_WORD_WRAP = "Pref_WordWrap";
 	public static final String PREF_TASK_TAGS = "Pref_TaskTagsOn";
@@ -45,6 +46,7 @@ public class MarkdownPreferencePage
 	public MarkdownPreferencePage() {
 		super(GRID);
 		IPreferenceStore pStore = Activator.getDefault().getPreferenceStore();
+		pStore.setDefault(PREF_EMPHASIS, true);
 		pStore.setDefault(PREF_WORD_WRAP, false);
 		pStore.setDefault(PREF_FOLDING, true);
 		pStore.setDefault(PREF_TASK_TAGS, true);
@@ -63,8 +65,13 @@ public class MarkdownPreferencePage
 	 */
 	@Override
 	public void createFieldEditors() {
+		// Emphasis
+		BooleanFieldEditor fd = new BooleanFieldEditor(PREF_EMPHASIS,
+				"Indicate emphasis with italics",
+				getFieldEditorParent());
+		addField(fd);
 		// Word wrap
-		BooleanFieldEditor fd = new BooleanFieldEditor(PREF_WORD_WRAP,
+		fd = new BooleanFieldEditor(PREF_WORD_WRAP,
 				"Soft word wrapping \r\n"
 +"Note: may cause line numbers and related \r\n" +
 		"functionality to act a bit strangely",
@@ -105,6 +112,14 @@ public class MarkdownPreferencePage
 	 */
 	public void init(IWorkbench workbench) {
 		
+	}
+
+	public static boolean showEmphasis() {
+		IPreferenceStore pStore = Activator.getDefault().getPreferenceStore();
+		if (! pStore.contains(MarkdownPreferencePage.PREF_EMPHASIS)) {
+			return true;
+		}
+		return pStore.getBoolean(MarkdownPreferencePage.PREF_EMPHASIS);		
 	}
 
 	public static boolean wordWrap() {

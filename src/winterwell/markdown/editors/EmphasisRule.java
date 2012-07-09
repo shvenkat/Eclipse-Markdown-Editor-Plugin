@@ -9,6 +9,8 @@ import org.eclipse.jface.text.rules.ICharacterScanner;
 import org.eclipse.jface.text.rules.IToken;
 import org.eclipse.jface.text.rules.MultiLineRule;
 
+import winterwell.markdown.preferences.MarkdownPreferencePage;
+
 /**
  * 
  *
@@ -25,6 +27,7 @@ public class EmphasisRule extends MultiLineRule {
 	
 	@Override
 	protected boolean sequenceDetected(ICharacterScanner scanner, char[] sequence, boolean eofAllowed) {
+		if (! MarkdownPreferencePage.showEmphasis()) return false;
 		boolean detect = super.sequenceDetected(scanner, sequence, eofAllowed);
 		if (!detect) return false;
 		// But is it an emphasis* or a * list item?
